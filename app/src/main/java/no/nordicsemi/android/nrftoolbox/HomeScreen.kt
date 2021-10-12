@@ -27,11 +27,11 @@ import no.nordicsemi.android.csc.view.CSCScreen
 import no.nordicsemi.android.gls.view.GLSScreen
 import no.nordicsemi.android.hrs.view.HRSScreen
 import no.nordicsemi.android.hts.view.HTSScreen
-import no.nordicsemi.android.scanner.view.BluetoothNotAvailableScreen
-import no.nordicsemi.android.scanner.view.BluetoothNotEnabledScreen
-import no.nordicsemi.android.scanner.view.RequestPermissionScreen
-import no.nordicsemi.android.scanner.view.ScanDeviceScreen
-import no.nordicsemi.android.scanner.view.ScanDeviceScreenResult
+import no.nordicsemi.android.permission.view.BluetoothNotAvailableScreen
+import no.nordicsemi.android.permission.view.BluetoothNotEnabledScreen
+import no.nordicsemi.android.permission.view.RequestPermissionScreen
+import no.nordicsemi.android.permission.view.ScanDeviceScreen
+import no.nordicsemi.android.permission.view.ScanDeviceScreenResult
 import no.nordicsemi.android.theme.view.CloseIconAppBar
 import no.nordicsemi.android.utils.exhaustive
 

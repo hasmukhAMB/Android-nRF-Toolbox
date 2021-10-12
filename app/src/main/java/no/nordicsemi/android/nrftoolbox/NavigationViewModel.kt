@@ -3,11 +3,11 @@ package no.nordicsemi.android.nrftoolbox
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import no.nordicsemi.android.scanner.tools.NordicBleScanner
-import no.nordicsemi.android.scanner.tools.PermissionHelper
-import no.nordicsemi.android.scanner.tools.ScannerStatus
+import no.nordicsemi.android.permission.tools.NordicBleScanner
+import no.nordicsemi.android.permission.tools.PermissionHelper
+import no.nordicsemi.android.permission.tools.ScannerStatus
 import no.nordicsemi.android.service.SelectedBluetoothDeviceHolder
-import no.nordicsemi.android.scanner.viewmodel.BluetoothPermissionState
+import no.nordicsemi.android.permission.viewmodel.BluetoothPermissionState
 import javax.inject.Inject
 
 @HiltViewModel

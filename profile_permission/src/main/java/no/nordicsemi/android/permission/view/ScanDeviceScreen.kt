@@ -1,4 +1,4 @@
-package no.nordicsemi.android.scanner.view
+package no.nordicsemi.android.permission.view
 
 import android.app.Activity
 import android.companion.AssociationRequest
