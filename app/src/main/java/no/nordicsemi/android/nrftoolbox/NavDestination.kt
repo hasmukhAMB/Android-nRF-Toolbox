@@ -9,5 +9,7 @@ enum class NavDestination(val id: String) {
     REQUEST_PERMISSION("request-permission"),
     BLUETOOTH_NOT_AVAILABLE("bluetooth-not-available"),
     BLUETOOTH_NOT_ENABLED("bluetooth-not-enabled"),
-    DEVICE_NOT_CONNECTED("device-not-connected"),
+    DEVICE_NOT_CONNECTED("device-not-connected");
+
+    val argsKey = id
 }

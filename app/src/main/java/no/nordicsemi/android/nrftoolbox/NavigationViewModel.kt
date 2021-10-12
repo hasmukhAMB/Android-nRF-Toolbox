@@ -6,8 +6,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import no.nordicsemi.android.permission.tools.NordicBleScanner
 import no.nordicsemi.android.permission.tools.PermissionHelper
 import no.nordicsemi.android.permission.tools.ScannerStatus
-import no.nordicsemi.android.service.SelectedBluetoothDeviceHolder
 import no.nordicsemi.android.permission.viewmodel.BluetoothPermissionState
+import no.nordicsemi.android.service.SelectedBluetoothDeviceHolder
 import javax.inject.Inject
 
 @HiltViewModel
@@ -17,7 +17,7 @@ class NavigationViewModel @Inject constructor(
     private val selectedDevice: SelectedBluetoothDeviceHolder
 ): ViewModel() {
 
-    val state= MutableStateFlow(NavDestination.HOME)
+    val state= MutableStateFlow(NavigationTarget(NavDestination.HOME))
     private var targetDestination = NavDestination.HOME
 
     fun navigate(destination: NavDestination) {
@@ -27,11 +27,11 @@ class NavigationViewModel @Inject constructor(
 
     fun navigateUp() {
         targetDestination = NavDestination.HOME
-        state.value = NavDestination.HOME
+        state.value = NavigationTarget(NavDestination.HOME)
     }
 
     fun finish() {
-        if (state.value != targetDestination) {
+        if (state.value.destination != targetDestination) {
             navigateToNextScreen()
         }
     }
@@ -47,12 +47,35 @@ class NavigationViewModel @Inject constructor(
     }
 
     private fun navigateToNextScreen() {
-        state.value = when (getBluetoothState()) {
+        val destination = when (getBluetoothState()) {
             BluetoothPermissionState.PERMISSION_REQUIRED -> NavDestination.REQUEST_PERMISSION
             BluetoothPermissionState.BLUETOOTH_NOT_AVAILABLE -> NavDestination.BLUETOOTH_NOT_AVAILABLE
             BluetoothPermissionState.BLUETOOTH_NOT_ENABLED -> NavDestination.BLUETOOTH_NOT_ENABLED
             BluetoothPermissionState.DEVICE_NOT_CONNECTED -> NavDestination.DEVICE_NOT_CONNECTED
             BluetoothPermissionState.READY -> targetDestination
+        }
+
+        val args = if (destination == NavDestination.DEVICE_NOT_CONNECTED) {
+            val key = NavDestination.DEVICE_NOT_CONNECTED.argsKey
+            val value = createServiceId(targetDestination)
+            "$key=$value"
+        } else {
+            null
+        }
+        state.tryEmit(NavigationTarget(destination, args))
+    }
+
+    private fun createServiceId(destination: NavDestination): String {
+        return when (destination) {
+            NavDestination.HOME -> ""
+            NavDestination.CSC -> ""
+            NavDestination.HRS -> ""
+            NavDestination.HTS -> ""
+            NavDestination.GLS -> ""
+            NavDestination.REQUEST_PERMISSION,
+            NavDestination.BLUETOOTH_NOT_AVAILABLE,
+            NavDestination.BLUETOOTH_NOT_ENABLED,
+            NavDestination.DEVICE_NOT_CONNECTED -> throw IllegalArgumentException("There is no serivce related to the destination: $destination")
         }
     }
 }

@@ -23,6 +23,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import no.nordicsemi.android.csc.view.CSCScreen
 import no.nordicsemi.android.gls.view.GLSScreen
 import no.nordicsemi.android.hrs.view.HRSScreen
@@ -56,8 +57,11 @@ internal fun HomeScreen() {
         composable(NavDestination.BLUETOOTH_NOT_ENABLED.id) {
             BluetoothNotEnabledScreen(continueAction)
         }
-        composable(NavDestination.DEVICE_NOT_CONNECTED.id) {
-            ScanDeviceScreen("") {
+        composable(
+            NavDestination.DEVICE_NOT_CONNECTED.id,
+            arguments = listOf(navArgument(NavDestination.DEVICE_NOT_CONNECTED.argsKey) { nullable = false })
+        ) {
+            ScanDeviceScreen(it.arguments?.getString(NavDestination.DEVICE_NOT_CONNECTED.argsKey)!!) {
                 when (it) {
                     ScanDeviceScreenResult.OK -> viewModel.finish()
                     ScanDeviceScreenResult.CANCEL -> viewModel.navigateUp()
@@ -67,7 +71,7 @@ internal fun HomeScreen() {
     }
 
     LaunchedEffect(state) {
-        navController.navigate(state.id)
+        navController.navigate(state.url)
     }
 }
 
