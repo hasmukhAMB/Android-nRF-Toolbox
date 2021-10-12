@@ -22,14 +22,8 @@ internal object HiltModule {
 
     @Singleton
     @Provides
-    fun createSelectedBluetoothDeviceHolder(
-        @ApplicationContext context: Context,
-        bluetoothAdapter: BluetoothAdapter?
-    ): SelectedBluetoothDeviceHolder {
-        return SelectedBluetoothDeviceHolder(
-            context,
-            bluetoothAdapter
-        )
+    fun createSelectedBluetoothDeviceHolder(): SelectedBluetoothDeviceHolder {
+        return SelectedBluetoothDeviceHolder()
     }
 
     @Singleton

@@ -30,8 +30,8 @@ import no.nordicsemi.android.hts.view.HTSScreen
 import no.nordicsemi.android.permission.view.BluetoothNotAvailableScreen
 import no.nordicsemi.android.permission.view.BluetoothNotEnabledScreen
 import no.nordicsemi.android.permission.view.RequestPermissionScreen
-import no.nordicsemi.android.permission.view.ScanDeviceScreen
-import no.nordicsemi.android.permission.view.ScanDeviceScreenResult
+import no.nordicsemi.android.scanner.view.ScanDeviceScreen
+import no.nordicsemi.android.scanner.view.ScanDeviceScreenResult
 import no.nordicsemi.android.theme.view.CloseIconAppBar
 import no.nordicsemi.android.utils.exhaustive
 
@@ -57,9 +57,9 @@ internal fun HomeScreen() {
             BluetoothNotEnabledScreen(continueAction)
         }
         composable(NavDestination.DEVICE_NOT_CONNECTED.id) {
-            ScanDeviceScreen {
+            ScanDeviceScreen("") {
                 when (it) {
-                    ScanDeviceScreenResult.SUCCESS -> viewModel.finish()
+                    ScanDeviceScreenResult.OK -> viewModel.finish()
                     ScanDeviceScreenResult.CANCEL -> viewModel.navigateUp()
                 }.exhaustive
             }
