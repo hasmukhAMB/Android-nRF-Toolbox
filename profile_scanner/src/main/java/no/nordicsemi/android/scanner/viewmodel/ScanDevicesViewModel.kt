@@ -8,7 +8,6 @@ import no.nordicsemi.android.scanner.view.OnDeviceSelected
 import no.nordicsemi.android.scanner.view.ScanDevicesViewEvent
 import no.nordicsemi.android.service.SelectedBluetoothDeviceHolder
 import no.nordicsemi.android.support.v18.scanner.BluetoothLeScannerCompat
-import no.nordicsemi.android.support.v18.scanner.BluetoothUuid
 import no.nordicsemi.android.support.v18.scanner.ScanCallback
 import no.nordicsemi.android.support.v18.scanner.ScanFilter
 import no.nordicsemi.android.support.v18.scanner.ScanResult
@@ -62,9 +61,9 @@ class ScanDevicesViewModel @Inject constructor(
             .setUseHardwareBatchingIfSupported(true)
             .build()
 
-        val parcelUuid = BluetoothUuid.parseUuidFrom(serviceId.toByteArray())
+//        val parcelUuid = BluetoothUuid.parseUuidFrom(serviceId.toByteArray())
         val filters: MutableList<ScanFilter> = ArrayList()
-        filters.add(ScanFilter.Builder().setServiceUuid(parcelUuid).build())
+        filters.add(ScanFilter.Builder().build())
 
         scanner.startScan(filters, settings, scanCallback)
     }
