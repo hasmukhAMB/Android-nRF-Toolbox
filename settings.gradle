@@ -81,3 +81,4 @@ if (file('../Android-Scanner-Compat-Library').exists()) {
 }
 include ':profile_scanner'
 include ':profile_rscs'
+include ':profile_bps'
