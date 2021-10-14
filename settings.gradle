@@ -80,3 +80,4 @@ if (file('../Android-Scanner-Compat-Library').exists()) {
     includeBuild('../Android-Scanner-Compat-Library')
 }
 include ':profile_scanner'
+include ':profile_rscs'
