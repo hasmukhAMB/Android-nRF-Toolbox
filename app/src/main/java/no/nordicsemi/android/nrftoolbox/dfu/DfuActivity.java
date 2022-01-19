@@ -62,7 +62,6 @@ import no.nordicsemi.android.dfu.DfuProgressListener;
 import no.nordicsemi.android.dfu.DfuProgressListenerAdapter;
 import no.nordicsemi.android.dfu.DfuServiceInitiator;
 import no.nordicsemi.android.dfu.DfuServiceListenerHelper;
-import no.nordicsemi.android.nrftoolbox.AppHelpFragment;
 import no.nordicsemi.android.nrftoolbox.R;
 import no.nordicsemi.android.nrftoolbox.dfu.adapter.FileBrowserAppsAdapter;
 import no.nordicsemi.android.nrftoolbox.dfu.fragment.UploadCancelFragment;
@@ -371,10 +370,6 @@ public class DfuActivity extends AppCompatActivity implements LoaderCallbacks<Cu
 		switch (item.getItemId()) {
 			case android.R.id.home:
 				onBackPressed();
-				break;
-			case R.id.action_about:
-				final AppHelpFragment fragment = AppHelpFragment.getInstance(R.string.dfu_about_text);
-				fragment.show(getSupportFragmentManager(), "help_fragment");
 				break;
 			case R.id.action_settings:
 				final Intent intent = new Intent(this, SettingsActivity.class);
