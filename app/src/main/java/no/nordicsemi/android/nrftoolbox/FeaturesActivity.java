@@ -52,7 +52,6 @@ import android.widget.Toast;
 import java.util.List;
 
 import no.nordicsemi.android.nrftoolbox.adapter.AppAdapter;
-import no.nordicsemi.android.nrftoolbox.hr.HRActivity;
 
 public class FeaturesActivity extends AppCompatActivity {
 	private static final String NRF_CONNECT_CATEGORY = "no.nordicsemi.android.nrftoolbox.LAUNCHER";
@@ -102,22 +101,6 @@ public class FeaturesActivity extends AppCompatActivity {
 		grid.setEmptyView(findViewById(android.R.id.empty));
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-		final Intent intent = getIntent();
-		if (intent.hasExtra(EXTRA_APP) && intent.hasExtra(EXTRA_ADDRESS)) {
-			final String app = intent.getStringExtra(EXTRA_APP);
-			switch (app) {
-				case "HRM":
-					final Intent newIntent = new Intent(this, HRActivity.class);
-					newIntent.putExtra(EXTRA_ADDRESS, intent.getByteArrayExtra(EXTRA_ADDRESS));
-					newIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-					startActivity(newIntent);
-					break;
-				default:
-					// other are not supported yet
-					break;
-			}
-		}
 	}
 
 	@Override
